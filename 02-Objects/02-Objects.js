@@ -5,20 +5,21 @@ function crearClaseLibro() {
       // El constructor de la clase Libro recibe titulo (string), autor (string), traducciones (array de objetos)
       // Inicializar las propiedades del libro con los valores recibidos como argumento
       // Tu código aca:
-      
-      
+      this.titulo = titulo,
+      this.autor = autor,
+      this.traducciones = traducciones
     }
 
     getTitulo() {
       // este método debe retornar el titulo del libro.
       // Tu código aca:
-      
+      return this.titulo
     }
 
     getAutor() {
       // El método debe retornar nombre y apellido del autor
       // Tu código aca:
-      
+      return this.autor
     }
 
     addTraduccion(idioma, editorial) {
@@ -26,7 +27,7 @@ function crearClaseLibro() {
       // { idioma: idioma, editorial: editorial} al arreglo de traducciones del libro.
       // No debe retornar nada.
       // Tu código aca:
-      
+      this.traducciones.push({idioma, editorial})
     }
 
     getTraducciones() {
@@ -35,8 +36,11 @@ function crearClaseLibro() {
       // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, {idioma: 'castellano', editorial: 'Santillana'}]
       // libro.getTraducciones() debería devolver ['inglés', 'castellano']
       // Tu código aca:
-      
-
+      let traducciones=[];
+      this.traducciones.forEach(element => {
+        traducciones.push(element.idioma)
+      });
+      return traducciones
     }
 
     getAlcance() {
@@ -46,13 +50,15 @@ function crearClaseLibro() {
       // Suponiendo que el libro tiene estas traducciones: [{idioma: 'inglés', editorial: 'Scholastic'}, {idioma: 'castellano', editorial: 'Santillana'}]
       // libro.getAlcance() deberia devolver 2
       // Tu código aca:
-      
+      let idiomas=new Set(this.getTraducciones())
+      return idiomas.size
 
     }
   }
 
   return Libro;
 }
+
 
 //Objeto de ejemplo:
 // const hogwarts = {
@@ -72,7 +78,13 @@ const printStaff = function (objeto) {
   // Retornar un arreglo que contenga los strings indicando el titulo y nombre de cada miembro del staff
   // de esta forma "The headmaster is Albus Percival Wulfric Brian Dumbledore" 
   // el arreglo debe mantener el orden que posee el staff del objeto.
-  
+  let props= Object.keys(objeto.staff)
+  let arr=[]
+  props.forEach(elem=>{
+    console.log(objeto.staff[elem])
+    arr.push(`The ${elem} is ${objeto.staff[elem].name}`)
+  })
+  return arr
   
 };
 
